@@ -26,7 +26,7 @@ AAP_PIP="awx-python -m pip"
 AUTOMATION_CONTROLLER_MANAGE="awx-manage"
 
 # Service names for AAP 2.5
-SERVICES=("automation-controller-server")
+SERVICES=("automation-controller-service")
 
 print_header() {
     echo -e "${BLUE}============================================${NC}"
@@ -112,7 +112,7 @@ restart_services() {
     
     for service in "${SERVICES[@]}"; do
         echo "  Restarting $service..."
-        if systemctl restart "$service"; then
+        if "$service" restart; then
             print_success "  $service restarted"
         else
             print_error "  Failed to restart $service"
