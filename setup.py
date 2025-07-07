@@ -2,27 +2,29 @@
 
 from setuptools import setup
 
-requirements = []  # add Python dependencies here
-# e.g., requirements = ["PyYAML"]
+requirements = [
+    "requests>=2.25.0",
+]
 
 setup(
-    name='awx-custom-credential-plugin-example',
-    version='0.1',
-    author='Ansible, Inc.',
-    author_email='info@ansible.com',
-    description='',
-    long_description='',
+    name='awx-vault-secrets-plugin',
+    version='0.1.0',
+    author='AWX Vault Secrets Plugin',
+    author_email='',
+    description='HashiCorp Vault secrets plugin for AWX/AAP',
+    long_description='A comprehensive credential plugin for HashiCorp Vault secrets integration with Ansible Automation Platform',
     license='Apache License 2.0',
-    keywords='ansible',
+    keywords='ansible vault hashicorp awx aap',
     url='http://github.com/ansible/awx-custom-credential-plugin-example',
-    packages=['awx_custom_credential_plugin_example'],
+    packages=['awx_vault_secrets_plugin'],
     include_package_data=True,
     zip_safe=False,
     setup_requires=[],
     install_requires=requirements,
     entry_points = {
         'awx.credential_plugins': [
-            'example_plugin = awx_custom_credential_plugin_example:example_plugin',
+            'vault_auth = awx_vault_secrets_plugin:vault_auth_plugin',
+            'vault_aws_lookup = awx_vault_secrets_plugin:vault_aws_lookup_plugin',
         ]
     }
 )
